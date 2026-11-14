@@ -1,0 +1,2867 @@
+{
+  "generated_at": "2026-11-14T15:54:59+00:00",
+  "config": {
+    "rows_per_table": 600,
+    "seed": 11,
+    "upstream_systems": [
+      "merchant",
+      "order_core",
+      "payment_core",
+      "risk_engine",
+      "user_center"
+    ],
+    "tables": [
+      "order_core.orders",
+      "order_core.order_items",
+      "payment_core.payments",
+      "payment_core.refunds",
+      "user_center.users",
+      "user_center.user_devices",
+      "risk_engine.risk_events",
+      "merchant.merchants",
+      "merchant.merchant_daily_stats"
+    ]
+  },
+  "breaking_change_detection": {
+    "metric": "breaking_change_identification",
+    "with_sample_profiles": true,
+    "samples": 254,
+    "confusion_matrix": {
+      "tp": 159,
+      "fp": 0,
+      "tn": 95,
+      "fn": 0
+    },
+    "accuracy": 1.0,
+    "precision_breaking": 1.0,
+    "recall_breaking": 1.0,
+    "f1_breaking": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0,
+    "by_kind": {
+      "add_nullable_column": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "add_required_column": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "compound_compatible": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "compound_mixed": {
+        "expected_breaking": 7,
+        "predicted_breaking": 7,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "description_change": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "drop_add_decoy": {
+        "expected_breaking": 6,
+        "predicted_breaking": 6,
+        "total": 6,
+        "correct": 6,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "drop_and_add_unrelated": {
+        "expected_breaking": 7,
+        "predicted_breaking": 7,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "drop_column": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "enum_add_value": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "enum_remove_value": {
+        "expected_breaking": 7,
+        "predicted_breaking": 7,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "enum_reorder": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "freshness_equivalent": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 2,
+        "correct": 2,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "freshness_relax": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 4,
+        "correct": 4,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "freshness_tighten": {
+        "expected_breaking": 4,
+        "predicted_breaking": 4,
+        "total": 4,
+        "correct": 4,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "narrow_and_widen": {
+        "expected_breaking": 4,
+        "predicted_breaking": 4,
+        "total": 4,
+        "correct": 4,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "noop": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "precision_narrow": {
+        "expected_breaking": 6,
+        "predicted_breaking": 6,
+        "total": 6,
+        "correct": 6,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "primary_key_change": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "range_tighten": {
+        "expected_breaking": 7,
+        "predicted_breaking": 7,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "range_widen": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "rename_column": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "rename_hard": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "rename_plus_drop": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "rename_swap": {
+        "expected_breaking": 7,
+        "predicted_breaking": 7,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "rename_with_tightening": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "reorder_columns": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "required_flag_swap": {
+        "expected_breaking": 4,
+        "predicted_breaking": 4,
+        "total": 4,
+        "correct": 4,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "required_relax": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "required_tighten": {
+        "expected_breaking": 4,
+        "predicted_breaking": 4,
+        "total": 4,
+        "correct": 4,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "rule_added": {
+        "expected_breaking": 7,
+        "predicted_breaking": 7,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "timestamp_to_date": {
+        "expected_breaking": 2,
+        "predicted_breaking": 2,
+        "total": 2,
+        "correct": 2,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "type_narrow": {
+        "expected_breaking": 6,
+        "predicted_breaking": 6,
+        "total": 6,
+        "correct": 6,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "type_widen": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 4,
+        "correct": 4,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "unique_key_added": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "unique_key_removed": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 2,
+        "correct": 2,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "unique_relax": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 8,
+        "correct": 8,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "unique_tighten": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      }
+    },
+    "by_kind_undecidable": {
+      "rename_swap": {
+        "total": 2,
+        "reason": "order_id and sku_id have identical declarations; the contract cannot distinguish a value swap from an untouched table"
+      },
+      "rename_null_column": {
+        "total": 1,
+        "reason": "paid_at is entirely NULL, so name-similarity and value-overlap are both silent; only an explicit renamed_from hint can identify this rename"
+      }
+    },
+    "rename": {
+      "cases_with_rename": 36,
+      "undetectable_cases": 1,
+      "undetectable_note": "renames of all-NULL columns carry no data evidence; they can only be declared with an explicit renamed_from hint",
+      "detected": 36,
+      "recall": 1.0,
+      "spurious_rename_cases": 0,
+      "precision": 1.0,
+      "spurious_examples": [],
+      "missed_examples": []
+    },
+    "undetectable_cases": {
+      "count": 3,
+      "note": "These were excluded because the submitted contract declares nothing that distinguishes the mutated version from the untouched one.",
+      "examples": [
+        {
+          "table": "order_core.order_items",
+          "mutation": "rename_swap",
+          "expected_breaking": true,
+          "predicted_breaking": false,
+          "reason": "order_id and sku_id have identical declarations; the contract cannot distinguish a value swap from an untouched table"
+        },
+        {
+          "table": "payment_core.payments",
+          "mutation": "rename_null_column",
+          "expected_breaking": true,
+          "predicted_breaking": true,
+          "reason": "paid_at is entirely NULL, so name-similarity and value-overlap are both silent; only an explicit renamed_from hint can identify this rename"
+        },
+        {
+          "table": "merchant.merchant_daily_stats",
+          "mutation": "rename_swap",
+          "expected_breaking": true,
+          "predicted_breaking": false,
+          "reason": "txn_count and refund_count have identical declarations; the contract cannot distinguish a value swap from an untouched table"
+        }
+      ]
+    },
+    "skipped_mutations": {
+      "_mut_type_widen": 5,
+      "_mut_enum_value_type": 9,
+      "_mut_rename_of_null_column": 8,
+      "_mut_narrow_and_widen": 5,
+      "_mut_drop_unique_key": 7,
+      "_mut_required_tighten": 5,
+      "_mut_swap_required_flags": 5,
+      "_mut_freshness_equivalent": 7,
+      "_mut_freshness_tighten": 5,
+      "_mut_enum_tighten": 2,
+      "_mut_drop_and_swap:ContractError": 2,
+      "_mut_drop_and_add_decoy:ContractError": 2,
+      "_mut_enum_widen": 2,
+      "_mut_retype_without_shape_change": 7,
+      "_mut_freshness_relax": 5,
+      "_mut_enum_reorder": 2,
+      "_mut_precision_narrow": 3,
+      "_mut_type_narrow": 3,
+      "_mut_range_widen": 2,
+      "_mut_range_tighten": 2,
+      "_mut_add_rule": 2,
+      "_mut_compound": 2,
+      "_mut_unique_relax": 1,
+      "_mut_drop_and_add_decoy": 1
+    },
+    "errors": []
+  },
+  "breaking_change_detection_contract_only": {
+    "metric": "breaking_change_identification",
+    "with_sample_profiles": false,
+    "samples": 254,
+    "confusion_matrix": {
+      "tp": 159,
+      "fp": 0,
+      "tn": 95,
+      "fn": 0
+    },
+    "accuracy": 1.0,
+    "precision_breaking": 1.0,
+    "recall_breaking": 1.0,
+    "f1_breaking": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0,
+    "by_kind": {
+      "add_nullable_column": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "add_required_column": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "compound_compatible": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "compound_mixed": {
+        "expected_breaking": 7,
+        "predicted_breaking": 7,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "description_change": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "drop_add_decoy": {
+        "expected_breaking": 6,
+        "predicted_breaking": 6,
+        "total": 6,
+        "correct": 6,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "drop_and_add_unrelated": {
+        "expected_breaking": 7,
+        "predicted_breaking": 7,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "drop_column": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "enum_add_value": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "enum_remove_value": {
+        "expected_breaking": 7,
+        "predicted_breaking": 7,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "enum_reorder": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "freshness_equivalent": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 2,
+        "correct": 2,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "freshness_relax": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 4,
+        "correct": 4,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "freshness_tighten": {
+        "expected_breaking": 4,
+        "predicted_breaking": 4,
+        "total": 4,
+        "correct": 4,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "narrow_and_widen": {
+        "expected_breaking": 4,
+        "predicted_breaking": 4,
+        "total": 4,
+        "correct": 4,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "noop": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "precision_narrow": {
+        "expected_breaking": 6,
+        "predicted_breaking": 6,
+        "total": 6,
+        "correct": 6,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "primary_key_change": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "range_tighten": {
+        "expected_breaking": 7,
+        "predicted_breaking": 7,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "range_widen": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "rename_column": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "rename_hard": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "rename_plus_drop": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "rename_swap": {
+        "expected_breaking": 7,
+        "predicted_breaking": 7,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "rename_with_tightening": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "reorder_columns": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "required_flag_swap": {
+        "expected_breaking": 4,
+        "predicted_breaking": 4,
+        "total": 4,
+        "correct": 4,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "required_relax": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "required_tighten": {
+        "expected_breaking": 4,
+        "predicted_breaking": 4,
+        "total": 4,
+        "correct": 4,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "rule_added": {
+        "expected_breaking": 7,
+        "predicted_breaking": 7,
+        "total": 7,
+        "correct": 7,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "timestamp_to_date": {
+        "expected_breaking": 2,
+        "predicted_breaking": 2,
+        "total": 2,
+        "correct": 2,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "type_narrow": {
+        "expected_breaking": 6,
+        "predicted_breaking": 6,
+        "total": 6,
+        "correct": 6,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "type_widen": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 4,
+        "correct": 4,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "unique_key_added": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "unique_key_removed": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 2,
+        "correct": 2,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "unique_relax": {
+        "expected_breaking": 0,
+        "predicted_breaking": 0,
+        "total": 8,
+        "correct": 8,
+        "misses": [],
+        "accuracy": 1.0
+      },
+      "unique_tighten": {
+        "expected_breaking": 9,
+        "predicted_breaking": 9,
+        "total": 9,
+        "correct": 9,
+        "misses": [],
+        "accuracy": 1.0
+      }
+    },
+    "by_kind_undecidable": {
+      "rename_swap": {
+        "total": 2,
+        "reason": "order_id and sku_id have identical declarations; the contract cannot distinguish a value swap from an untouched table"
+      },
+      "rename_null_column": {
+        "total": 1,
+        "reason": "paid_at is entirely NULL, so name-similarity and value-overlap are both silent; only an explicit renamed_from hint can identify this rename"
+      }
+    },
+    "rename": {
+      "cases_with_rename": 36,
+      "undetectable_cases": 1,
+      "undetectable_note": "renames of all-NULL columns carry no data evidence; they can only be declared with an explicit renamed_from hint",
+      "detected": 27,
+      "recall": 0.75,
+      "spurious_rename_cases": 6,
+      "precision": 0.8182,
+      "spurious_examples": [
+        {
+          "table": "order_core.orders",
+          "mutation": "drop_add_decoy",
+          "detected": [
+            [
+              "user_id",
+              "user_id_hash"
+            ]
+          ]
+        },
+        {
+          "table": "payment_core.payments",
+          "mutation": "drop_add_decoy",
+          "detected": [
+            [
+              "order_id",
+              "order_id_hash"
+            ]
+          ]
+        },
+        {
+          "table": "payment_core.refunds",
+          "mutation": "drop_add_decoy",
+          "detected": [
+            [
+              "payment_id",
+              "payment_id_hash"
+            ]
+          ]
+        },
+        {
+          "table": "user_center.users",
+          "mutation": "drop_add_decoy",
+          "detected": [
+            [
+              "phone",
+              "phone_hash"
+            ]
+          ]
+        },
+        {
+          "table": "risk_engine.risk_events",
+          "mutation": "drop_add_decoy",
+          "detected": [
+            [
+              "user_id",
+              "user_id_hash"
+            ]
+          ]
+        },
+        {
+          "table": "merchant.merchants",
+          "mutation": "drop_add_decoy",
+          "detected": [
+            [
+              "merchant_name",
+              "merchant_name_hash"
+            ]
+          ]
+        }
+      ],
+      "missed_examples": [
+        {
+          "table": "order_core.orders",
+          "expected": [
+            "user_id",
+            "buyer_ref"
+          ],
+          "detected": []
+        },
+        {
+          "table": "order_core.order_items",
+          "expected": [
+            "qty",
+            "item_count"
+          ],
+          "detected": []
+        },
+        {
+          "table": "payment_core.payments",
+          "expected": [
+            "amount",
+            "gross_sum"
+          ],
+          "detected": []
+        },
+        {
+          "table": "payment_core.refunds",
+          "expected": [
+            "amount",
+            "gross_sum"
+          ],
+          "detected": []
+        },
+        {
+          "table": "user_center.users",
+          "expected": [
+            "user_id",
+            "buyer_ref"
+          ],
+          "detected": []
+        },
+        {
+          "table": "user_center.user_devices",
+          "expected": [
+            "device_id",
+            "handset_ref"
+          ],
+          "detected": []
+        },
+        {
+          "table": "risk_engine.risk_events",
+          "expected": [
+            "user_id",
+            "buyer_ref"
+          ],
+          "detected": []
+        },
+        {
+          "table": "merchant.merchants",
+          "expected": [
+            "merchant_id",
+            "seller_ref"
+          ],
+          "detected": []
+        },
+        {
+          "table": "merchant.merchant_daily_stats",
+          "expected": [
+            "merchant_id",
+            "seller_ref"
+          ],
+          "detected": []
+        }
+      ]
+    },
+    "undetectable_cases": {
+      "count": 3,
+      "note": "These were excluded because the submitted contract declares nothing that distinguishes the mutated version from the untouched one.",
+      "examples": [
+        {
+          "table": "order_core.order_items",
+          "mutation": "rename_swap",
+          "expected_breaking": true,
+          "predicted_breaking": false,
+          "reason": "order_id and sku_id have identical declarations; the contract cannot distinguish a value swap from an untouched table"
+        },
+        {
+          "table": "payment_core.payments",
+          "mutation": "rename_null_column",
+          "expected_breaking": true,
+          "predicted_breaking": true,
+          "reason": "paid_at is entirely NULL, so name-similarity and value-overlap are both silent; only an explicit renamed_from hint can identify this rename"
+        },
+        {
+          "table": "merchant.merchant_daily_stats",
+          "mutation": "rename_swap",
+          "expected_breaking": true,
+          "predicted_breaking": false,
+          "reason": "txn_count and refund_count have identical declarations; the contract cannot distinguish a value swap from an untouched table"
+        }
+      ]
+    },
+    "skipped_mutations": {
+      "_mut_type_widen": 5,
+      "_mut_rename_of_null_column": 8,
+      "_mut_enum_value_type": 9,
+      "_mut_drop_unique_key": 7,
+      "_mut_narrow_and_widen": 5,
+      "_mut_enum_reorder": 2,
+      "_mut_drop_and_add_decoy:ContractError": 2,
+      "_mut_freshness_relax": 5,
+      "_mut_freshness_tighten": 5,
+      "_mut_enum_widen": 2,
+      "_mut_enum_tighten": 2,
+      "_mut_retype_without_shape_change": 7,
+      "_mut_drop_and_swap:ContractError": 2,
+      "_mut_swap_required_flags": 5,
+      "_mut_freshness_equivalent": 7,
+      "_mut_required_tighten": 5,
+      "_mut_add_rule": 2,
+      "_mut_range_tighten": 2,
+      "_mut_type_narrow": 3,
+      "_mut_precision_narrow": 3,
+      "_mut_compound": 2,
+      "_mut_range_widen": 2,
+      "_mut_drop_and_add_decoy": 1,
+      "_mut_unique_relax": 1
+    },
+    "errors": []
+  },
+  "violation_detection": {
+    "metric": "violation_detection",
+    "tables": 9,
+    "injections": 121,
+    "detected": 121,
+    "detection_rate": 1.0,
+    "clean_false_positive_tables": 0,
+    "clean_rows_tested": 5400,
+    "clean_false_positive_examples": [],
+    "by_injection": {
+      "boundary_plus_epsilon": {
+        "total": 7,
+        "detected": 7,
+        "affected_columns": [
+          "amount",
+          "kyc_level",
+          "qty",
+          "score",
+          "total_amount",
+          "txn_count"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "cross_field_inconsistency": {
+        "total": 2,
+        "detected": 2,
+        "affected_columns": [
+          "amount",
+          "created_at",
+          "fee",
+          "paid_at"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "duplicate_primary_key": {
+        "total": 9,
+        "detected": 9,
+        "affected_columns": [
+          "device_id",
+          "event_id",
+          "item_id",
+          "merchant_id",
+          "order_id",
+          "payment_id",
+          "refund_id",
+          "stat_date",
+          "user_id"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "duplicate_unique": {
+        "total": 8,
+        "detected": 8,
+        "affected_columns": [
+          "device_id",
+          "event_id",
+          "item_id",
+          "merchant_id",
+          "order_id",
+          "payment_id",
+          "refund_id",
+          "user_id"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "enum_case_mismatch": {
+        "total": 7,
+        "detected": 7,
+        "affected_columns": [
+          "category",
+          "device_type",
+          "event_type",
+          "method",
+          "reason",
+          "register_channel",
+          "status"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "invalid_enum": {
+        "total": 7,
+        "detected": 7,
+        "affected_columns": [
+          "category",
+          "device_type",
+          "event_type",
+          "method",
+          "reason",
+          "register_channel",
+          "status"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "invalid_timestamp": {
+        "total": 8,
+        "detected": 8,
+        "affected_columns": [
+          "created_at",
+          "last_seen_at",
+          "occurred_at",
+          "updated_at"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "negative_value": {
+        "total": 7,
+        "detected": 7,
+        "affected_columns": [
+          "amount",
+          "kyc_level",
+          "qty",
+          "score",
+          "total_amount",
+          "txn_count"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "null_in_required": {
+        "total": 9,
+        "detected": 9,
+        "affected_columns": [
+          "merchant_name",
+          "order_id",
+          "payment_id",
+          "phone",
+          "txn_count",
+          "user_id"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "null_in_unique": {
+        "total": 8,
+        "detected": 8,
+        "affected_columns": [
+          "device_id",
+          "event_id",
+          "item_id",
+          "merchant_id",
+          "order_id",
+          "payment_id",
+          "refund_id",
+          "user_id"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "numeric_as_string": {
+        "total": 7,
+        "detected": 7,
+        "affected_columns": [
+          "amount",
+          "kyc_level",
+          "qty",
+          "score",
+          "total_amount",
+          "txn_count"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "scale_overflow": {
+        "total": 6,
+        "detected": 6,
+        "affected_columns": [
+          "amount",
+          "gmv",
+          "risk_score",
+          "total_amount",
+          "unit_price"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "schema_drift": {
+        "total": 18,
+        "detected": 18,
+        "affected_columns": [],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "stale_data": {
+        "total": 4,
+        "detected": 4,
+        "affected_columns": [
+          "created_at",
+          "occurred_at",
+          "updated_at"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "type_mismatch": {
+        "total": 7,
+        "detected": 7,
+        "affected_columns": [
+          "amount",
+          "kyc_level",
+          "qty",
+          "score",
+          "total_amount",
+          "txn_count"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      },
+      "value_out_of_range": {
+        "total": 7,
+        "detected": 7,
+        "affected_columns": [
+          "amount",
+          "kyc_level",
+          "qty",
+          "score",
+          "total_amount",
+          "txn_count"
+        ],
+        "errors": [],
+        "detection_rate": 1.0
+      }
+    },
+    "details": [
+      {
+        "table": "order_core.orders",
+        "injection": "null_in_required",
+        "changed_columns": [
+          "user_id"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.user_id.not_null"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "invalid_enum",
+        "changed_columns": [
+          "status"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.status.enum"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "value_out_of_range",
+        "changed_columns": [
+          "total_amount"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.total_amount.max"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "negative_value",
+        "changed_columns": [
+          "total_amount"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.total_amount.min"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "duplicate_unique",
+        "changed_columns": [
+          "order_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.order_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "duplicate_primary_key",
+        "changed_columns": [
+          "order_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.order_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "invalid_timestamp",
+        "changed_columns": [
+          "created_at"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.created_at.type",
+          "paid_after_created"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "stale_data",
+        "changed_columns": [
+          "updated_at"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "freshness"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "type_mismatch",
+        "changed_columns": [
+          "total_amount"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.total_amount.type"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "boundary_plus_epsilon",
+        "changed_columns": [
+          "total_amount"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.total_amount.max"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "enum_case_mismatch",
+        "changed_columns": [
+          "status"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.status.enum"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "numeric_as_string",
+        "changed_columns": [
+          "total_amount"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.total_amount.type"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "scale_overflow",
+        "changed_columns": [
+          "total_amount"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.total_amount.type"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "null_in_unique",
+        "changed_columns": [
+          "order_id"
+        ],
+        "detected": true,
+        "violation_count": 14,
+        "rules": [
+          "column.order_id.not_null",
+          "order_id_not_null",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "cross_field_inconsistency",
+        "changed_columns": [
+          "created_at",
+          "paid_at"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "paid_after_created"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "schema_drift",
+        "changed_columns": [
+          "user_id"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "order_core.orders",
+        "injection": "schema_drift",
+        "changed_columns": [],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "null_in_required",
+        "changed_columns": [
+          "order_id"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.order_id.not_null"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "value_out_of_range",
+        "changed_columns": [
+          "qty"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.qty.max"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "negative_value",
+        "changed_columns": [
+          "qty"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.qty.min"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "duplicate_unique",
+        "changed_columns": [
+          "item_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.item_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "duplicate_primary_key",
+        "changed_columns": [
+          "item_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.item_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "invalid_timestamp",
+        "changed_columns": [
+          "created_at"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.created_at.type"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "type_mismatch",
+        "changed_columns": [
+          "qty"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.qty.type"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "boundary_plus_epsilon",
+        "changed_columns": [
+          "qty"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.qty.max"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "numeric_as_string",
+        "changed_columns": [
+          "qty"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.qty.type"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "scale_overflow",
+        "changed_columns": [
+          "unit_price"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.unit_price.type"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "null_in_unique",
+        "changed_columns": [
+          "item_id"
+        ],
+        "detected": true,
+        "violation_count": 9,
+        "rules": [
+          "column.item_id.not_null",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "schema_drift",
+        "changed_columns": [
+          "order_id"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "order_core.order_items",
+        "injection": "schema_drift",
+        "changed_columns": [],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "null_in_required",
+        "changed_columns": [
+          "order_id"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.order_id.not_null"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "invalid_enum",
+        "changed_columns": [
+          "method"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.method.enum"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "value_out_of_range",
+        "changed_columns": [
+          "amount"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.amount.max"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "negative_value",
+        "changed_columns": [
+          "amount"
+        ],
+        "detected": true,
+        "violation_count": 6,
+        "rules": [
+          "column.amount.min",
+          "fee_not_exceed_amount"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "duplicate_unique",
+        "changed_columns": [
+          "payment_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.payment_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "duplicate_primary_key",
+        "changed_columns": [
+          "payment_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.payment_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "invalid_timestamp",
+        "changed_columns": [
+          "created_at"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.created_at.type"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "stale_data",
+        "changed_columns": [
+          "created_at"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "freshness"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "type_mismatch",
+        "changed_columns": [
+          "amount"
+        ],
+        "detected": true,
+        "violation_count": 6,
+        "rules": [
+          "column.amount.type",
+          "fee_not_exceed_amount"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "boundary_plus_epsilon",
+        "changed_columns": [
+          "amount"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.amount.max"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "enum_case_mismatch",
+        "changed_columns": [
+          "method"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.method.enum"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "numeric_as_string",
+        "changed_columns": [
+          "amount"
+        ],
+        "detected": true,
+        "violation_count": 4,
+        "rules": [
+          "column.amount.type",
+          "fee_not_exceed_amount"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "scale_overflow",
+        "changed_columns": [
+          "amount"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.amount.type"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "null_in_unique",
+        "changed_columns": [
+          "payment_id"
+        ],
+        "detected": true,
+        "violation_count": 9,
+        "rules": [
+          "column.payment_id.not_null",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "cross_field_inconsistency",
+        "changed_columns": [
+          "amount",
+          "fee"
+        ],
+        "detected": true,
+        "violation_count": 6,
+        "rules": [
+          "column.fee.max",
+          "fee_not_exceed_amount"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "schema_drift",
+        "changed_columns": [
+          "order_id"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "payment_core.payments",
+        "injection": "schema_drift",
+        "changed_columns": [],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "null_in_required",
+        "changed_columns": [
+          "payment_id"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.payment_id.not_null"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "invalid_enum",
+        "changed_columns": [
+          "reason"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.reason.enum"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "value_out_of_range",
+        "changed_columns": [
+          "amount"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.amount.max"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "negative_value",
+        "changed_columns": [
+          "amount"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.amount.min"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "duplicate_unique",
+        "changed_columns": [
+          "refund_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.refund_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "duplicate_primary_key",
+        "changed_columns": [
+          "refund_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.refund_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "invalid_timestamp",
+        "changed_columns": [
+          "created_at"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.created_at.type"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "type_mismatch",
+        "changed_columns": [
+          "amount"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.amount.type"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "boundary_plus_epsilon",
+        "changed_columns": [
+          "amount"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.amount.max"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "enum_case_mismatch",
+        "changed_columns": [
+          "reason"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.reason.enum"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "numeric_as_string",
+        "changed_columns": [
+          "amount"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.amount.type"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "scale_overflow",
+        "changed_columns": [
+          "amount"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.amount.type"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "null_in_unique",
+        "changed_columns": [
+          "refund_id"
+        ],
+        "detected": true,
+        "violation_count": 9,
+        "rules": [
+          "column.refund_id.not_null",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "schema_drift",
+        "changed_columns": [
+          "payment_id"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "payment_core.refunds",
+        "injection": "schema_drift",
+        "changed_columns": [],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "null_in_required",
+        "changed_columns": [
+          "phone"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.phone.not_null"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "invalid_enum",
+        "changed_columns": [
+          "register_channel"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.register_channel.enum"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "value_out_of_range",
+        "changed_columns": [
+          "kyc_level"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.kyc_level.max"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "negative_value",
+        "changed_columns": [
+          "kyc_level"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.kyc_level.min"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "duplicate_unique",
+        "changed_columns": [
+          "user_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.user_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "duplicate_primary_key",
+        "changed_columns": [
+          "user_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.user_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "invalid_timestamp",
+        "changed_columns": [
+          "created_at"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.created_at.type"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "stale_data",
+        "changed_columns": [
+          "updated_at"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "freshness"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "type_mismatch",
+        "changed_columns": [
+          "kyc_level"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.kyc_level.type"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "boundary_plus_epsilon",
+        "changed_columns": [
+          "kyc_level"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.kyc_level.max"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "enum_case_mismatch",
+        "changed_columns": [
+          "register_channel"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.register_channel.enum"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "numeric_as_string",
+        "changed_columns": [
+          "kyc_level"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.kyc_level.type"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "scale_overflow",
+        "changed_columns": [
+          "risk_score"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.risk_score.type"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "null_in_unique",
+        "changed_columns": [
+          "user_id"
+        ],
+        "detected": true,
+        "violation_count": 9,
+        "rules": [
+          "column.user_id.not_null",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "schema_drift",
+        "changed_columns": [
+          "phone"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "user_center.users",
+        "injection": "schema_drift",
+        "changed_columns": [],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "user_center.user_devices",
+        "injection": "null_in_required",
+        "changed_columns": [
+          "user_id"
+        ],
+        "detected": true,
+        "violation_count": 4,
+        "rules": [
+          "column.user_id.not_null",
+          "table.unique_key.device_type+user_id"
+        ]
+      },
+      {
+        "table": "user_center.user_devices",
+        "injection": "invalid_enum",
+        "changed_columns": [
+          "device_type"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.device_type.enum"
+        ]
+      },
+      {
+        "table": "user_center.user_devices",
+        "injection": "duplicate_unique",
+        "changed_columns": [
+          "device_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.device_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "user_center.user_devices",
+        "injection": "duplicate_primary_key",
+        "changed_columns": [
+          "device_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.device_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "user_center.user_devices",
+        "injection": "invalid_timestamp",
+        "changed_columns": [
+          "last_seen_at"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.last_seen_at.type"
+        ]
+      },
+      {
+        "table": "user_center.user_devices",
+        "injection": "enum_case_mismatch",
+        "changed_columns": [
+          "device_type"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.device_type.enum"
+        ]
+      },
+      {
+        "table": "user_center.user_devices",
+        "injection": "null_in_unique",
+        "changed_columns": [
+          "device_id"
+        ],
+        "detected": true,
+        "violation_count": 9,
+        "rules": [
+          "column.device_id.not_null",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "user_center.user_devices",
+        "injection": "schema_drift",
+        "changed_columns": [
+          "user_id"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "user_center.user_devices",
+        "injection": "schema_drift",
+        "changed_columns": [],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "null_in_required",
+        "changed_columns": [
+          "user_id"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.user_id.not_null"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "invalid_enum",
+        "changed_columns": [
+          "event_type"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.event_type.enum"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "value_out_of_range",
+        "changed_columns": [
+          "score"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.score.max"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "negative_value",
+        "changed_columns": [
+          "score"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.score.min"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "duplicate_unique",
+        "changed_columns": [
+          "event_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.event_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "duplicate_primary_key",
+        "changed_columns": [
+          "event_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.event_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "invalid_timestamp",
+        "changed_columns": [
+          "occurred_at"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.occurred_at.type"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "stale_data",
+        "changed_columns": [
+          "occurred_at"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "freshness"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "type_mismatch",
+        "changed_columns": [
+          "score"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.score.type"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "boundary_plus_epsilon",
+        "changed_columns": [
+          "score"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.score.max"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "enum_case_mismatch",
+        "changed_columns": [
+          "event_type"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.event_type.enum"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "numeric_as_string",
+        "changed_columns": [
+          "score"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.score.type"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "null_in_unique",
+        "changed_columns": [
+          "event_id"
+        ],
+        "detected": true,
+        "violation_count": 9,
+        "rules": [
+          "column.event_id.not_null",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "schema_drift",
+        "changed_columns": [
+          "user_id"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "risk_engine.risk_events",
+        "injection": "schema_drift",
+        "changed_columns": [],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "merchant.merchants",
+        "injection": "null_in_required",
+        "changed_columns": [
+          "merchant_name"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.merchant_name.not_null"
+        ]
+      },
+      {
+        "table": "merchant.merchants",
+        "injection": "invalid_enum",
+        "changed_columns": [
+          "category"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.category.enum"
+        ]
+      },
+      {
+        "table": "merchant.merchants",
+        "injection": "duplicate_unique",
+        "changed_columns": [
+          "merchant_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.merchant_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "merchant.merchants",
+        "injection": "duplicate_primary_key",
+        "changed_columns": [
+          "merchant_id"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.merchant_id.unique",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "merchant.merchants",
+        "injection": "enum_case_mismatch",
+        "changed_columns": [
+          "category"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.category.enum"
+        ]
+      },
+      {
+        "table": "merchant.merchants",
+        "injection": "null_in_unique",
+        "changed_columns": [
+          "merchant_id"
+        ],
+        "detected": true,
+        "violation_count": 9,
+        "rules": [
+          "column.merchant_id.not_null",
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "merchant.merchants",
+        "injection": "schema_drift",
+        "changed_columns": [
+          "merchant_name"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "merchant.merchants",
+        "injection": "schema_drift",
+        "changed_columns": [],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "merchant.merchant_daily_stats",
+        "injection": "null_in_required",
+        "changed_columns": [
+          "txn_count"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.txn_count.not_null"
+        ]
+      },
+      {
+        "table": "merchant.merchant_daily_stats",
+        "injection": "value_out_of_range",
+        "changed_columns": [
+          "txn_count"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.txn_count.max"
+        ]
+      },
+      {
+        "table": "merchant.merchant_daily_stats",
+        "injection": "negative_value",
+        "changed_columns": [
+          "txn_count"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.txn_count.min"
+        ]
+      },
+      {
+        "table": "merchant.merchant_daily_stats",
+        "injection": "duplicate_primary_key",
+        "changed_columns": [
+          "merchant_id",
+          "stat_date"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "table.primary_key"
+        ]
+      },
+      {
+        "table": "merchant.merchant_daily_stats",
+        "injection": "invalid_timestamp",
+        "changed_columns": [
+          "updated_at"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.updated_at.type"
+        ]
+      },
+      {
+        "table": "merchant.merchant_daily_stats",
+        "injection": "type_mismatch",
+        "changed_columns": [
+          "txn_count"
+        ],
+        "detected": true,
+        "violation_count": 3,
+        "rules": [
+          "column.txn_count.type"
+        ]
+      },
+      {
+        "table": "merchant.merchant_daily_stats",
+        "injection": "boundary_plus_epsilon",
+        "changed_columns": [
+          "txn_count"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.txn_count.max"
+        ]
+      },
+      {
+        "table": "merchant.merchant_daily_stats",
+        "injection": "numeric_as_string",
+        "changed_columns": [
+          "txn_count"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.txn_count.type"
+        ]
+      },
+      {
+        "table": "merchant.merchant_daily_stats",
+        "injection": "scale_overflow",
+        "changed_columns": [
+          "gmv"
+        ],
+        "detected": true,
+        "violation_count": 2,
+        "rules": [
+          "column.gmv.type"
+        ]
+      },
+      {
+        "table": "merchant.merchant_daily_stats",
+        "injection": "schema_drift",
+        "changed_columns": [
+          "txn_count"
+        ],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      },
+      {
+        "table": "merchant.merchant_daily_stats",
+        "injection": "schema_drift",
+        "changed_columns": [],
+        "detected": true,
+        "violation_count": 1,
+        "rules": [
+          "schema.conformance"
+        ]
+      }
+    ]
+  },
+  "clean_data_false_positive_sweep": {
+    "probes": 27,
+    "false_positive_probes": 0,
+    "false_positive_rate": 0.0,
+    "cases": []
+  },
+  "stability_sweep": {
+    "seeds": [
+      11,
+      29,
+      47,
+      83,
+      131
+    ],
+    "row_sizes": [
+      200,
+      800
+    ],
+    "runs": [
+      {
+        "rows_per_table": 200,
+        "seed": 11,
+        "breaking_accuracy": 1.0,
+        "breaking_precision": 1.0,
+        "breaking_recall": 1.0,
+        "rename_recall": 1.0,
+        "rename_recall_contract_only": 0.75,
+        "violation_detection_rate": 1.0,
+        "injections": 121,
+        "clean_false_positive_rate": 0.0
+      },
+      {
+        "rows_per_table": 200,
+        "seed": 29,
+        "breaking_accuracy": 1.0,
+        "breaking_precision": 1.0,
+        "breaking_recall": 1.0,
+        "rename_recall": 1.0,
+        "rename_recall_contract_only": 0.75,
+        "violation_detection_rate": 1.0,
+        "injections": 121,
+        "clean_false_positive_rate": 0.0
+      },
+      {
+        "rows_per_table": 200,
+        "seed": 47,
+        "breaking_accuracy": 1.0,
+        "breaking_precision": 1.0,
+        "breaking_recall": 1.0,
+        "rename_recall": 1.0,
+        "rename_recall_contract_only": 0.75,
+        "violation_detection_rate": 1.0,
+        "injections": 121,
+        "clean_false_positive_rate": 0.0
+      },
+      {
+        "rows_per_table": 200,
+        "seed": 83,
+        "breaking_accuracy": 1.0,
+        "breaking_precision": 1.0,
+        "breaking_recall": 1.0,
+        "rename_recall": 1.0,
+        "rename_recall_contract_only": 0.7222,
+        "violation_detection_rate": 1.0,
+        "injections": 121,
+        "clean_false_positive_rate": 0.0
+      },
+      {
+        "rows_per_table": 200,
+        "seed": 131,
+        "breaking_accuracy": 1.0,
+        "breaking_precision": 1.0,
+        "breaking_recall": 1.0,
+        "rename_recall": 1.0,
+        "rename_recall_contract_only": 0.7222,
+        "violation_detection_rate": 1.0,
+        "injections": 121,
+        "clean_false_positive_rate": 0.0
+      },
+      {
+        "rows_per_table": 800,
+        "seed": 11,
+        "breaking_accuracy": 1.0,
+        "breaking_precision": 1.0,
+        "breaking_recall": 1.0,
+        "rename_recall": 1.0,
+        "rename_recall_contract_only": 0.75,
+        "violation_detection_rate": 1.0,
+        "injections": 121,
+        "clean_false_positive_rate": 0.0
+      },
+      {
+        "rows_per_table": 800,
+        "seed": 29,
+        "breaking_accuracy": 1.0,
+        "breaking_precision": 1.0,
+        "breaking_recall": 1.0,
+        "rename_recall": 1.0,
+        "rename_recall_contract_only": 0.75,
+        "violation_detection_rate": 1.0,
+        "injections": 121,
+        "clean_false_positive_rate": 0.0
+      },
+      {
+        "rows_per_table": 800,
+        "seed": 47,
+        "breaking_accuracy": 1.0,
+        "breaking_precision": 1.0,
+        "breaking_recall": 1.0,
+        "rename_recall": 1.0,
+        "rename_recall_contract_only": 0.75,
+        "violation_detection_rate": 1.0,
+        "injections": 121,
+        "clean_false_positive_rate": 0.0
+      },
+      {
+        "rows_per_table": 800,
+        "seed": 83,
+        "breaking_accuracy": 1.0,
+        "breaking_precision": 1.0,
+        "breaking_recall": 1.0,
+        "rename_recall": 1.0,
+        "rename_recall_contract_only": 0.7222,
+        "violation_detection_rate": 1.0,
+        "injections": 121,
+        "clean_false_positive_rate": 0.0
+      },
+      {
+        "rows_per_table": 800,
+        "seed": 131,
+        "breaking_accuracy": 1.0,
+        "breaking_precision": 1.0,
+        "breaking_recall": 1.0,
+        "rename_recall": 1.0,
+        "rename_recall_contract_only": 0.7222,
+        "violation_detection_rate": 1.0,
+        "injections": 121,
+        "clean_false_positive_rate": 0.0
+      }
+    ],
+    "aggregate": {
+      "breaking_accuracy": {
+        "min": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "breaking_precision": {
+        "min": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "breaking_recall": {
+        "min": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "rename_recall": {
+        "min": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "rename_recall_contract_only": {
+        "min": 0.7222,
+        "mean": 0.7389,
+        "max": 0.75
+      },
+      "violation_detection_rate": {
+        "min": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "clean_false_positive_rate": {
+        "min": 0.0,
+        "mean": 0.0,
+        "max": 0.0
+      }
+    }
+  },
+  "negative_controls": {
+    "structural_control": {
+      "description": "name-similarity-only rename matcher (no sample data)",
+      "rename_recall": 0.7297,
+      "real_detector_recall_same_cases": 1.0,
+      "cases": 37
+    },
+    "violation_control": {
+      "description": "shape-only validator (NULLs and Python types; no enum/range/unique/freshness)",
+      "detection_rate": 0.4369,
+      "cases": 103
+    },
+    "note": "Controls are intentionally weaker detectors. Their lower scores show the headline metrics measure the real detectors, not the harness."
+  },
+  "realistic_false_positive_rate": {
+    "probes": 9,
+    "flagged": 0,
+    "false_positive_rate": 0.0,
+    "cases": []
+  },
+  "known_blind_spots": [
+    {
+      "case": "rename of an entirely NULL column",
+      "why": "no name resemblance and no values to compare; the two versions are observationally identical",
+      "mitigation": "submit an explicit `renamed_from` hint; the diff engine honours it at confidence 1.0"
+    },
+    {
+      "case": "value swap between two identically-declared columns",
+      "why": "the declaration is unchanged by the swap; nothing declares which column means what",
+      "mitigation": "declare a cross-field expression rule (e.g. `created_at <= updated_at`); the sampler catches it as a data violation"
+    },
+    {
+      "case": "semantic meaning change under an unchanged shape",
+      "why": "`status='paid'` silently meaning something new is not a schema change at all",
+      "mitigation": "attach a business rule or data predicate to the contract; contract review at submission is the only real safeguard"
+    },
+    {
+      "case": "declared type change when the sample predates the change",
+      "why": "value-level evidence is absent, so only declaration diffing applies",
+      "mitigation": "declaration diffing always runs and does catch it; the sample is used for renames, not type decisions"
+    }
+  ],
+  "throughput": {
+    "tables": 9,
+    "rows": 45000,
+    "elapsed_seconds": 0.456,
+    "rows_per_second": 98682,
+    "violations": 0
+  },
+  "elapsed_seconds": 13.94
+}

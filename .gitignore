@@ -16,3 +16,11 @@ node_modules/
 __pycache__/
 .venv/
 venv/
+
+# runtime state
+data/
+*.db
+*.db-wal
+*.db-shm
+alerts.jsonl
+.pytest_cache/

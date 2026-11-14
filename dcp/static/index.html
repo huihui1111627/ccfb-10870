@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>数据契约平台 · Data Contract Platform</title>
+<style>
+:root{
+  --bg:#0f1419;--panel:#171e26;--panel2:#1d2731;--line:#2a3745;--text:#e6edf3;
+  --muted:#8b98a5;--accent:#4c9aff;--green:#3fb950;--yellow:#d29922;--red:#f85149;
+  --orange:#db6d28;--purple:#a371f7;--radius:10px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif}
+header{padding:18px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:var(--panel)}
+header h1{font-size:18px;margin:0;font-weight:600}
+header .sub{color:var(--muted);font-size:12px}
+nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav button{background:transparent;border:1px solid transparent;color:var(--muted);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px}
+nav button.on{background:var(--panel2);color:var(--text);border-color:var(--line)}
+nav button:hover{color:var(--text)}
+.wrap{padding:22px 24px;max-width:1500px;margin:0 auto}
+.grid{display:grid;gap:16px}
+.cards{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.card .n{font-size:26px;font-weight:650;letter-spacing:-.5px}
+.card .l{color:var(--muted);font-size:12px;margin-top:2px}
+h2{font-size:15px;margin:0 0 12px;font-weight:600;display:flex;align-items:center;gap:8px}
+h3{font-size:13px;margin:18px 0 8px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.3px}
+tbody tr:hover{background:var(--panel2)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;border:1px solid}
+.pill.critical{color:#ffb4ae;border-color:#6b1f1c;background:#3d1412}
+.pill.high{color:#ffc9a3;border-color:#6b3313;background:#3a1d0d}
+.pill.medium{color:#f2d27a;border-color:#5a4a12;background:#2f2a10}
+.pill.low{color:#9fd0ff;border-color:#1f476b;background:#132c40}
+.pill.info{color:#b7c4d1;border-color:#33465a;background:#1c2733}
+.pill.active,.pill.compatible,.pill.backward_compatible{color:#7ee787;border-color:#1d5c2c;background:#132b18}
+.pill.breaking,.pill.rejected{color:#ff9d97;border-color:#6b1f1c;background:#3d1412}
+.pill.pending_signoff{color:#f2d27a;border-color:#5a4a12;background:#2f2a10}
+.pill.parallel{color:#d2b4ff;border-color:#4a2f7a;background:#241a3b}
+.pill.superseded,.pill.draft{color:#8b98a5;border-color:#33465a;background:#1a232c}
+.bar{height:6px;border-radius:4px;background:var(--line);overflow:hidden;min-width:60px}
+.bar>i{display:block;height:100%;background:var(--accent)}
+.btn{background:var(--panel2);border:1px solid var(--line);color:var(--text);padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12px}
+.btn:hover{border-color:var(--accent)}
+.btn.pri{background:#1f4a7a;border-color:#2f6ba8}
+.btn.danger{background:#4a1a17;border-color:#82302a}
+.btn:disabled{opacity:.45;cursor:default}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+input,select,textarea{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:7px 10px;border-radius:7px;font-size:13px;font-family:inherit}
+textarea{width:100%;min-height:120px;font-family:ui-monospace,monospace;font-size:12px}
+.empty{color:var(--muted);padding:28px;text-align:center;border:1px dashed var(--line);border-radius:var(--radius)}
+.hidden{display:none}
+.row{display:flex;gap:16px;align-items:flex-start}
+.col{flex:1;min-width:0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:16px}
+.detail{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;margin-top:8px;max-height:420px;overflow:auto}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 12px;font-size:13px}
+.kv .k{color:var(--muted)}
+.change{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+.change:last-child{border-bottom:none}
+.change .dot{width:8px;height:8px;border-radius:50%;margin-top:6px;flex:none}
+.dot.breaking{background:var(--red)}.dot.compatible{background:var(--green)}
+.switch{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:12px}
+.modal{position:fixed;inset:0;background:#000a;display:flex;align-items:center;justify-content:center;z-index:50;padding:20px}
+.modal .box{background:var(--panel);border:1px solid var(--line);border-radius:12px;max-width:1000px;width:100%;max-height:88vh;overflow:auto;padding:20px}
+.toast{position:fixed;bottom:22px;right:22px;background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:8px;padding:12px 16px;max-width:420px;z-index:100;box-shadow:0 10px 30px #0008}
+.toast.err{border-left-color:var(--red)}
+svg.spark{width:100%;height:120px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>数据契约平台</h1>
+    <div class="sub">Data Contract Platform · 契约目录 / 变更会签 / 校验运行 / 违约看板</div>
+  </div>
+  <nav id="nav">
+    <button data-tab="overview" class="on">总览</button>
+    <button data-tab="catalog">契约目录</button>
+    <button data-tab="signoff">变更会签</button>
+    <button data-tab="runs">校验运行</button>
+    <button data-tab="violations">违约看板</button>
+    <button data-tab="alerts">告警</button>
+    <button data-tab="submit">提交契约</button>
+  </nav>
+</header>
+<div class="wrap" id="root"></div>
+<div id="modal"></div>
+<div id="toast"></div>
+
+<script>
+const S = {
+  tab: 'overview',
+  data: null,
+  filters: {severity:'', upstream:'', table:''},
+};
+const $ = (sel, el=document) => el.querySelector(sel);
+const el = (tag, attrs={}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs||{})) {
+    if (k === 'html') n.innerHTML = v;
+    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
+    else if (k === 'class') n.className = v;
+    else if (v !== null && v !== undefined && v !== false) n.setAttribute(k, v);
+  }
+  for (const kid of kids.flat()) if (kid != null) n.append(kid.nodeType ? kid : document.createTextNode(String(kid)));
+  return n;
+};
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pill = v => `<span class="pill ${esc(v)}">${esc(v)}</span>`;
+const t = s => s ? new Date(s).toLocaleString('zh-CN', {hour12:false}) : '—';
+const pct = v => (v*100).toFixed(1)+'%';
+
+async function api(path, opts={}) {
+  const r = await fetch(path, {headers:{'Content-Type':'application/json', ...(opts.headers||{})}, ...opts});
+  const txt = await r.text();
+  let body; try { body = txt ? JSON.parse(txt) : null; } catch { body = txt; }
+  if (!r.ok) throw new Error(typeof body?.detail === 'string' ? body.detail : JSON.stringify(body?.detail || body));
+  return body;
+}
+function toast(msg, err=false) {
+  const d = el('div', {class:'toast'+(err?' err':'')}, msg);
+  $('#toast').append(d);
+  setTimeout(()=>d.remove(), 4200);
+}
+function openModal(html) { $('#modal').innerHTML = `<div class="modal"><div class="box">${html}</div></div>`; }
+function closeModal() { $('#modal').innerHTML=''; }
+$('#modal')?.addEventListener?.('click', () => {});
+
+document.addEventListener('click', e => {
+  if (e.target.id === 'modal' || e.target.closest('.close-modal')) closeModal();
+});
+$('#nav').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  S.tab = b.dataset.tab;
+  $('#nav').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+  render();
+});
+
+async function loadAll() {
+  S.data = await api('/api/dashboard');
+  render();
+}
+
+function render() {
+  const root = $('#root');
+  root.innerHTML = '';
+  const views = {overview:renderOverview, catalog:renderCatalog, signoff:renderSignoff,
+                 runs:renderRuns, violations:renderViolations, alerts:renderAlerts, submit:renderSubmit};
+  root.append(views[S.tab]());
+  if (S.tab === 'signoff' && !S.signoffData) refreshSignoffs();
+  if (S.tab === 'violations' && !S.violations) refreshViolations();
+  if (S.tab === 'alerts' && !S.alerts) refreshAlerts();
+}
+
+/* ---------------- overview ---------------- */
+function renderOverview() {
+  const d = S.data;
+  const c = d.contracts, v = d.violations, a = d.alerts;
+  const frag = document.createDocumentFragment();
+  frag.append(el('div',{class:'cards grid'}, ...[
+    card(c.total, '契约总数'),
+    card(c.active, '生效中'),
+    card(c.pending_signoff, '待会签', c.pending_signoff ? 'var(--yellow)' : null),
+    card(v.total_recent, '近期违约记录', v.total_recent ? 'var(--red)' : 'var(--green)'),
+    card(a.open, '未解决告警', a.open ? 'var(--orange)' : 'var(--green)'),
+    card(a.suppressed_recent, '去重抑制的重复告警', null, '同问题 24h 内不重复推送'),
+  ]));
+  frag.append(el('div',{class:'row', style:'margin-top:16px'},
+    el('div',{class:'col panel'}, el('h2',{},'上游违约趋势（按系统·按天）'), trendBlock(d.upstream_trend)),
+    el('div',{class:'col panel'}, el('h2',{},'上游系统违约排行'), upstreamTable(d.upstream_summary)),
+  ));
+  frag.append(el('div',{class:'row'},
+    el('div',{class:'col panel'}, el('h2',{},'待会签变更'), pendingMini(d.pending_signoffs)),
+    el('div',{class:'col panel'}, el('h2',{},'最近校验'), runsMini(d.runs)),
+  ));
+  return frag;
+}
+function card(n,l,color,note){ return el('div',{class:'card'}, el('div',{class:'n', style:color?`color:${color}`:''}, String(n ?? 0)), el('div',{class:'l'}, l), note?el('div',{class:'l',style:'margin-top:6px;opacity:.7'},note):null); }
+
+function upstreamTable(rows){
+  if(!rows?.length) return el('div',{class:'empty'},'暂无违约记录');
+  return el('table',{}, el('thead',{},el('tr',{},el('th',{},'上游系统'),el('th',{},'违约数'),el('th',{},'受影响契约'),el('th',{},'严重'),el('th',{},'最近一次'))),
+    el('tbody',{}, rows.map(r=>el('tr',{},
+      el('td',{}, el('span',{class:'mono'},r.upstream_system)),
+      el('td',{}, String(r.violations)),
+      el('td',{}, String(r.contracts_affected)),
+      criticalCell(r.critical_count),
+      el('td',{}, t(r.last_seen)))))
+  );
+}
+function criticalCell(n){
+  const td = el('td',{});
+  td.innerHTML = n ? pill('critical') + ' ' + n : '0';
+  return td;
+}
+function runsMini(rows){
+  if(!rows?.length) return el('div',{class:'empty'},'尚无校验运行');
+  return el('table',{},el('thead',{},el('tr',{},el('th',{},'契约'),el('th',{},'版本'),el('th',{},'检查行'),el('th',{},'违约'),el('th',{},'时间'))),
+    el('tbody',{},rows.slice(0,8).map(r=>el('tr',{},
+      el('td',{class:'mono'},r.contract_id), el('td',{},'v'+r.version),
+      el('td',{},String(r.rows_checked)), el('td',{}, r.violation_count? el('b',{style:'color:var(--red)'},String(r.violation_count)):'0'),
+      el('td',{},t(r.started_at))))));
+}
+function pendingMini(rows){
+  if(!rows?.length) return el('div',{class:'empty'},'没有待会签的变更');
+  return el('div',{}, rows.map(p=>{
+    const appr = p.signoffs.filter(s=>s.decision==='approved').length;
+    return el('div',{class:'change'},
+      el('div',{class:'dot breaking'}),
+      el('div',{style:'flex:1'}, el('b',{},p.contract_id+' v'+p.version),
+        el('div',{class:'mono',style:'color:var(--muted)'},`会签 ${appr}/${p.signoffs.length} · 提交 ${t(p.submitted_at)}`)),
+      el('button',{class:'btn', onclick:()=>{S.tab='signoff';$('#nav').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.tab==='signoff'));render();}},'去会签'));
+  }));
+}
+
+/* ---------------- trend chart ---------------- */
+function trendBlock(rows){
+  const box = el('div',{});
+  const svg = trendChart(rows);
+  box.append(svg);
+  if (svg._systems) {
+    const colors = ['#4c9aff','#f85149','#3fb950','#a371f7','#d29922','#db6d28','#39c5cf'];
+    box.append(el('div',{class:'legend'}, ...svg._systems.map((sys,i)=>
+      el('span',{}, el('i',{style:`background:${colors[i%colors.length]}`}), sys))));
+  }
+  return box;
+}
+function trendChart(rows){
+  const svgNS='http://www.w3.org/2000/svg';
+  const w=760,h=120,pad=24;
+  const svg=document.createElementNS(svgNS,'svg'); svg.setAttribute('class','spark'); svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+  if(!rows?.length){ const tx=document.createElementNS(svgNS,'text'); tx.setAttribute('x',20);tx.setAttribute('y',60);tx.setAttribute('fill','#8b98a5');tx.textContent='暂无数据'; svg.append(tx); return svg; }
+
+  const days=[...new Set(rows.map(r=>r.day))].sort();
+  const systems=[...new Set(rows.map(r=>r.upstream_system))].sort();
+  const colors=['#4c9aff','#f85149','#3fb950','#a371f7','#d29922','#db6d28','#39c5cf'];
+  const m=new Map(rows.map(r=>[r.day+'|'+r.upstream_system,r.n]));
+  const max=Math.max(...rows.map(r=>r.n),1);
+  const x=i=> days.length===1 ? w/2 : pad+i*((w-2*pad)/(days.length-1));
+  const y=n=>h-pad-(n/max)*(h-2*pad);
+
+  if (days.length === 1) {
+    // Single day: draw labelled markers instead of a one-point line.
+    systems.forEach((s,si)=>{
+      const n=m.get(days[0]+'|'+s)||0;
+      const cx=pad+40+si*Math.max(70,(w-2*pad-80)/Math.max(1,systems.length));
+      const cy=y(n);
+      const c=document.createElementNS(svgNS,'circle');
+      c.setAttribute('cx',cx); c.setAttribute('cy',cy); c.setAttribute('r',4.5);
+      c.setAttribute('fill',colors[si%colors.length]); svg.append(c);
+      const lbl=document.createElementNS(svgNS,'text');
+      lbl.setAttribute('x',cx); lbl.setAttribute('y',cy-9);
+      lbl.setAttribute('fill','#8b98a5'); lbl.setAttribute('font-size','10');
+      lbl.setAttribute('text-anchor','middle'); lbl.textContent=s+' '+n; svg.append(lbl);
+    });
+    const tx=document.createElementNS(svgNS,'text');
+    tx.setAttribute('x',w-8); tx.setAttribute('y',h-6); tx.setAttribute('fill','#8b98a5');
+    tx.setAttribute('font-size','9'); tx.setAttribute('text-anchor','end'); tx.textContent=days[0];
+    svg.append(tx);
+  } else {
+    systems.forEach((s,si)=>{
+      let path='';
+      days.forEach((d,i)=>{ const n=m.get(d+'|'+s)||0; path+=(i?'L':'M')+x(i).toFixed(1)+','+y(n).toFixed(1); });
+      const p=document.createElementNS(svgNS,'path');
+      p.setAttribute('d',path); p.setAttribute('fill','none');
+      p.setAttribute('stroke',colors[si%colors.length]); p.setAttribute('stroke-width','1.6');
+      p.setAttribute('opacity','.85'); svg.append(p);
+    });
+    days.forEach((d,i)=>{
+      if(i%Math.ceil(days.length/6)!==0 && i!==days.length-1) return;
+      const tx=document.createElementNS(svgNS,'text');
+      tx.setAttribute('x',x(i)); tx.setAttribute('y',h-4);
+      tx.setAttribute('fill','#8b98a5'); tx.setAttribute('font-size','9');
+      tx.setAttribute('text-anchor','middle'); tx.textContent=d.slice(5); svg.append(tx);
+    });
+  }
+  svg._systems = systems; svg._colors = colors;
+  return svg;
+}
+
+/* ---------------- catalog ---------------- */
+function renderCatalog(){
+  const d = S.data;
+  const frag=document.createDocumentFragment();
+  frag.append(el('div',{class:'toolbar'}, el('h2',{style:'margin:0'},'契约目录'),
+     el('span',{class:'switch'},'共 '+d.contracts_detail.length+' 张表，来自 '+d.contracts.upstreams.length+' 个上游系统')));
+  const wrapT = el('div',{class:'panel'});
+  const headRow = el('tr',{}, ['上游系统','表','最新版本','状态','当前生效','列数','消费者','负责人','操作'].map(h=>el('th',{},h)));
+  const bodyRows = d.contracts_detail.map(c => {
+    const nameCell = el('td',{},
+      el('span',{class:'mono'}, c.table_name || c.contract_id.split('.').slice(1).join('.')),
+      el('div',{style:'color:var(--muted);font-size:11px'}, c.description || ''));
+    const statusCell = el('td',{});
+    statusCell.innerHTML = pill(c.status) + (c.compatibility ? ' ' + pill(c.compatibility) : '');
+    const actions = el('td',{},
+      el('button',{class:'btn', onclick:()=>openContract(c.contract_id)}, '详情'),
+      ' ',
+      el('button',{class:'btn', onclick:()=>runValidation(c.contract_id)}, '校验'));
+    return el('tr',{},
+      el('td',{class:'mono'}, c.upstream_system),
+      nameCell,
+      el('td',{}, 'v'+c.version),
+      statusCell,
+      el('td',{}, c.active_version ? 'v'+c.active_version : '—'),
+      el('td',{}, String(c.column_count)),
+      el('td',{class:'mono', style:'font-size:11px'}, (c.consumers||[]).join(', ') || '—'),
+      el('td',{class:'mono', style:'font-size:11px'}, (c.owners||[]).join(', ') || '—'),
+      actions);
+  });
+  wrapT.append(el('table',{}, el('thead',{}, headRow), el('tbody',{}, ...bodyRows)));
+  frag.append(wrapT);
+  return frag;
+}
+
+async function openContract(id){
+  try {
+    const det = await api('/api/contracts/'+encodeURIComponent(id));
+    const c = det.contract, changes = det.changes;
+    const changeHtml = changes?.changes?.length ? changes.changes.map(ch=>`
+      <div class="change"><div class="dot ${ch.classification}"></div>
+        <div style="flex:1"><b>${esc(ch.summary)}</b>
+          <span style="margin-left:8px" class="pill ${ch.severity}">${ch.severity}</span>
+          <span class="pill ${ch.classification}">${ch.classification}</span>
+          ${ch.requires_signoff?'<span class="pill pending_signoff">需会签</span>':''}
+          <div style="color:var(--muted);font-size:11px;margin-top:2px">${esc(ch.reason||'')}</div>
+          ${ch.confidence!=null?`<div class="mono" style="font-size:10px;color:var(--muted)">置信度 ${ch.confidence} · ${esc(JSON.stringify(ch.evidence||{}))}</div>`:''}
+        </div></div>`).join('') : '<div class="empty">无变更记录</div>';
+    const cols = c.columns.map(col=>`
+      <tr><td class="mono">${esc(col.name)}${col.renamed_from?' <span class="pill low">renamed</span>':''}</td>
+        <td class="mono">${esc(col.type)}</td>
+        <td>${col.required?'NOT NULL':'NULL'}</td>
+        <td class="mono" style="font-size:11px">${col.enum?esc(JSON.stringify(col.enum)):''}${col.minimum!=null||col.maximum!=null?esc('['+(col.minimum??'')+','+(col.maximum??'')+']'):''}${col.unique?' UNIQUE':''}${col.precision!=null?' ('+col.precision+','+col.scale+')':''}</td>
+        <td style="color:var(--muted);font-size:11px">${esc(col.description||'')}</td></tr>`).join('');
+    const runs = det.change_runs || [];
+    openModal(`
+      <div style="display:flex;justify-content:space-between;align-items:start">
+        <div><h2 style="margin:0">${esc(c.contract_id)} <span class="pill ${det.version_row.status}">${det.version_row.status}</span></h2>
+          <div style="color:var(--muted);font-size:12px">上游 ${esc(c.upstream_system)} · 表 ${esc(c.table)} · v${c.version} · hash ${esc(det.version_row.schema_hash)}</div></div>
+        <button class="btn close-modal">关闭</button>
+      </div>
+      <div class="kv" style="margin-top:16px">
+        <div class="k">消费者</div><div class="mono">${esc(c.consumers.join(', ')||'—')}</div>
+        <div class="k">负责人</div><div class="mono">${esc(c.owners.join(', ')||'—')}</div>
+        <div class="k">主键</div><div class="mono">${esc((c.primary_key||[]).join(', ')||'—')}</div>
+        <div class="k">新鲜度</div><div class="mono">${c.freshness?esc(JSON.stringify(c.freshness)):'—'}</div>
+        <div class="k">并行版本</div><div class="mono">${det.parallel_versions.length?'v'+det.parallel_versions.join(', v'):'单版本'}</div>
+        <div class="k">版本历史</div><div>${det.versions.map(x=>`<span class="pill ${x.status}">v${x.version} ${x.compatibility||''}</span> `).join('')}</div>
+      </div>
+      <h3>变更判定（v${c.version}）</h3>${changeHtml}
+      <h3>列定义（${c.columns.length}）</h3>
+      <table><thead><tr><th>列</th><th>类型</th><th>可空</th><th>约束</th><th>说明</th></tr></thead><tbody>${cols}</tbody></table>
+      <h3>违约规则（表级）</h3>
+      <div class="mono" style="font-size:11px">${c.rules.map(r=>esc(JSON.stringify(r))).join('<br>')||'—'}</div>
+      <h3>近期违约汇总</h3>
+      ${det.violation_summary.length?`<table><thead><tr><th>规则</th><th>类型</th><th>严重</th><th>次数</th><th>最近</th></tr></thead><tbody>${det.violation_summary.map(v=>`<tr><td class="mono">${esc(v.rule_name)}</td><td>${esc(v.rule_kind)}</td><td>${pill(v.severity)}</td><td>${v.n}</td><td>${t(v.last_seen)}</td></tr>`).join('')}</tbody></table>`:'<div class="empty">暂无违约</div>'}
+      <div style="margin-top:18px;display:flex;gap:8px">
+        <button class="btn pri" onclick="runValidation('${esc(c.contract_id)}');closeModal()">立即校验</button>
+        <button class="btn" onclick="showSignoffs('${esc(c.contract_id)}',${c.version})">查看会签</button>
+      </div>`);
+  } catch(e) { toast('加载失败: '+e.message, true); }
+}
+
+async function runValidation(id, version=null, useSample=false){
+  try { toast('校验中…');
+    const res = await api(`/api/contracts/${encodeURIComponent(id)}/validate`, {method:'POST', body: JSON.stringify({version, use_sample:useSample, trigger:'manual'})});
+    const total = res.reduce((s,r)=>s+(r.violation_count||0),0);
+    toast(`校验完成：检查 ${res.map(r=>r.rows_checked).reduce((a,b)=>a+b,0)} 行，发现 ${total} 条违约`);
+    await loadAll();
+  } catch(e){ toast('校验失败: '+e.message, true); }
+}
+async function validateAll(){
+  try { toast('批量校验中…'); const res = await api('/api/validate-all',{method:'POST'});
+    const total = res.reduce((s,r)=>s+(r.violation_count||0),0);
+    toast(`批量校验完成：${res.length} 个运行，${total} 条违约`); await loadAll();
+  } catch(e){ toast('失败: '+e.message, true); }
+}
+
+/* ---------------- signoff ---------------- */
+function renderSignoff(){
+  const rows = S.signoffData;
+  const frag = document.createDocumentFragment();
+  frag.append(el('div',{class:'toolbar'},
+    el('h2',{style:'margin:0'},'变更会签'),
+    el('span',{class:'switch'},'破坏性变更须由全部登记消费者同意后放行；同意后新旧两版并行校验一个过渡期'),
+    el('button',{class:'btn', onclick:refreshSignoffs},'刷新')));
+  if(!rows){ return el('div',{class:'empty'},'加载中…'); }
+  if(!rows.length) { frag.append(el('div',{class:'empty'},'当前没有待会签的破坏性变更')); return frag; }
+  for (const p of rows) {
+    const ch = p.changes?.changes || [];
+    const appr = p.signoffs.filter(s=>s.decision==='approved').length;
+    const rej = p.signoffs.filter(s=>s.decision==='rejected').length;
+    const panel = el('div',{class:'panel'});
+    panel.append(el('div',{style:'display:flex;justify-content:space-between;align-items:start;gap:12px'},
+      el('div',{}, el('h2',{style:'margin:0'}, p.contract_id+' v'+p.version+' ',
+        el('span',{class:'pill breaking'},'破坏性变更')),
+        el('div',{class:'switch',style:'margin-top:4px'},`提交人 ${p.submitted_by} · ${t(p.submitted_at)} · 会签 ${appr}/${p.signoffs.length}${rej?' · 拒绝 '+rej:''}`)),
+      el('div',{}, el('button',{class:'btn',onclick:()=>openDiff(p.contract_id,p.version)},'查看完整变更'))));
+    panel.append(el('div',{style:'margin-top:10px'}, ch.map(c=>el('div',{class:'change'},
+      el('div',{class:'dot '+c.classification}),
+      el('div',{}, el('b',{},c.summary), ' ',
+        el('span',{class:'pill '+c.severity},c.severity), ' ',
+        c.requires_parallel? el('span',{class:'pill parallel'},'需并行'):null)))));
+    const tbl = el('table',{style:'margin-top:10px'}, el('thead',{},el('tr',{},el('th',{},'下游消费者'),el('th',{},'状态'),el('th',{},'时间'),el('th',{},'操作'))),
+      el('tbody',{}, p.signoffs.map(s=>el('tr',{},
+        el('td',{class:'mono'},s.consumer),
+        el('td',{html:pill(s.decision==='pending'?'pending_signoff':s.decision)}),
+        el('td',{},t(s.decided_at)),
+        el('td',{}, s.decision==='pending' ? el('span',{},
+          el('button',{class:'btn pri',onclick:()=>decide(p.contract_id,p.version,s.consumer,'approved')},'同意'),' ',
+          el('button',{class:'btn danger',onclick:()=>decide(p.contract_id,p.version,s.consumer,'rejected')},'拒绝')
+        ) : (s.comment||''))))));
+    panel.append(tbl);
+    frag.append(panel);
+  }
+  return frag;
+}
+async function refreshSignoffs(){
+  try { S.signoffData = await api('/api/signoffs'); render(); }
+  catch(e){ toast(e.message,true); }
+}
+async function decide(id, version, consumer, decision){
+  let comment = null;
+  if (decision==='rejected') comment = prompt('拒绝理由（会通知上游负责人）') || '未填写理由';
+  try {
+    const res = await api(`/api/contracts/${encodeURIComponent(id)}/versions/${version}/signoff`,
+      {method:'POST', body:JSON.stringify({consumer,decision,comment})});
+    toast(decision==='approved'&&res.status==='active' ? '全部同意，新版本已生效并进入并行过渡期' : `已记录：${consumer} ${decision}`);
+    await refreshSignoffs(); await loadAll();
+  } catch(e){ toast(e.message,true); }
+}
+async function showSignoffs(id, version){
+  try { const rows = await api(`/api/contracts/${encodeURIComponent(id)}/versions/${version}/signoffs`);
+    openModal(`<div style="display:flex;justify-content:space-between"><h2>v${version} 会签状态</h2><button class="btn close-modal">关闭</button></div>
+      <table><thead><tr><th>消费者</th><th>决策</th><th>时间</th><th>备注</th></tr></thead><tbody>
+      ${rows.map(s=>`<tr><td class="mono">${esc(s.consumer)}</td><td>${pill(s.decision==='pending'?'pending_signoff':s.decision)}</td><td>${t(s.decided_at)}</td><td>${esc(s.comment||'')}</td></tr>`).join('')}
+      </tbody></table>`);
+  } catch(e){ toast(e.message,true); }
+}
+async function openDiff(id, version){
+  try { const d = await api(`/api/contracts/${encodeURIComponent(id)}/diff?version=${version}`);
+    openModal(`<div style="display:flex;justify-content:space-between"><h2>${esc(id)} v${version} 变更 (${d.compatibility})</h2><button class="btn close-modal">关闭</button></div>
+      ${d.renames?.length?`<h3>识别出的字段改名</h3>`+d.renames.map(r=>`<div class="mono">${esc(r.old_name)} → ${esc(r.new_name)} <span class="pill low">${r.confidence}</span> ${esc(JSON.stringify(r.evidence))}</div>`).join(''):''}
+      <h3>变更列表</h3>${d.changes.map(c=>`<div class="change"><div class="dot ${c.classification}"></div><div><b>${esc(c.summary)}</b> ${pill(c.severity)} ${pill(c.classification)} ${c.requires_signoff?'<span class="pill pending_signoff">需会签</span>':''}<div style="color:var(--muted);font-size:11px">${esc(c.reason||'')}</div></div></div>`).join('')}
+      <h3>原始 JSON</h3><div class="detail mono">${esc(JSON.stringify(d,null,2))}</div>`);
+  } catch(e){ toast(e.message,true); }
+}
+
+/* ---------------- runs ---------------- */
+function renderRuns(){
+  const frag = document.createElement('div');
+  const toolbar = document.createElement('div');
+  toolbar.className = 'toolbar';
+  toolbar.append(
+    el('h2', {style:'margin:0'}, '校验运行'),
+    el('button', {class:'btn pri', onclick:validateAll}, '全部校验'),
+    el('button', {class:'btn', onclick:()=>finalizeTransitions()}, '结算到期过渡期'));
+  frag.append(toolbar);
+
+  const runs = S.runs || S.data.runs;
+  if(!runs.length){ frag.append(el('div',{class:'empty'},'暂无运行记录')); return frag; }
+
+  const headRow = el('tr',{}, ['契约','版本','角色','触发','检查行','干净行','违约','状态','耗时','操作'].map(h=>el('th',{},h)));
+  const bodyRows = runs.map(r => {
+    const dur = r.elapsed_ms != null ? (r.elapsed_ms/1000).toFixed(2)+'s'
+               : (r.finished_at ? ((new Date(r.finished_at)-new Date(r.started_at))/1000).toFixed(2)+'s' : '—');
+    const statusCell = el('td',{}); statusCell.innerHTML = pill(r.status);
+    const countCell = el('td',{});
+    if (r.violation_count) { countCell.innerHTML = `<b style="color:var(--red)">${r.violation_count}</b>`; }
+    else { countCell.textContent = '0'; }
+    const actions = el('td',{},
+      el('button',{class:'btn', onclick:()=>gotoViolations(r)}, '看违约'),
+      ' ',
+      el('button',{class:'btn', onclick:()=>runValidation(r.contract_id, r.version)}, '重跑'));
+    return el('tr',{},
+      el('td',{class:'mono'}, r.contract_id),
+      el('td',{}, 'v'+r.version),
+      el('td',{}, r.role||'—'),
+      el('td',{}, r.trigger),
+      el('td',{}, String(r.rows_checked)),
+      el('td',{}, String(r.rows_clean)),
+      countCell,
+      statusCell,
+      el('td',{}, dur),
+      actions);
+  });
+  frag.append(el('div',{class:'panel'}, el('table',{}, el('thead',{}, headRow), el('tbody',{}, ...bodyRows))));
+  return frag;
+}
+
+function gotoViolations(r){
+  S.tab = 'violations';
+  S.filters = {run: r.run_id, contract: r.contract_id};
+  document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('on', x.dataset.tab==='violations'));
+  render();
+}
+
+async function finalizeTransitions(){
+  try { const r = await api('/api/transitions/finalize',{method:'POST'});
+    toast(r.length?`已结算 ${r.length} 个到期过渡版本`:'没有到期过渡版本'); await loadAll();
+  } catch(e){ toast(e.message,true); }
+}
+
+/* ---------------- violations ---------------- */
+function renderViolations(){
+  const frag=document.createDocumentFragment();
+  const f = S.filters;
+  const sum = S.data.violations;
+  frag.append(el('div',{class:'toolbar'},
+    el('h2',{style:'margin:0'},'违约看板'),
+    el('select',{id:'f-sev', onchange:e=>{S.filters.severity=e.target.value;refreshViolations();}},
+      ...['','critical','high','medium','low'].map(x=>el('option',{value:x, selected: x===f.severity}, x||'全部严重度')),
+    ),
+    el('select',{id:'f-up', onchange:e=>{S.filters.upstream=e.target.value;refreshViolations();}},
+      ...['',...S.data.contracts.upstreams].map(x=>el('option',{value:x, selected:x===f.upstream}, x||'全部上游')),
+    ),
+    el('input',{id:'f-rule', placeholder:'按规则名过滤…', value:f.rule||'', onkeydown:e=>{if(e.key==='Enter'){S.filters.rule=e.target.value;refreshViolations();}}}),
+    el('button',{class:'btn',onclick:()=>{S.filters={};refreshViolations();}},'重置')));
+  frag.append(el('div',{class:'cards grid',style:'margin-bottom:14px'},
+    card(S.violations?S.violations.violations.length:'—','当前筛选结果'),
+    card(sum.by_severity.map(x=>x.count).reduce((a,b)=>a+b,0),'近期违约（按级别）'),
+    card((sum.by_severity.find(x=>x.severity==='critical')||{}).count||0,'严重级',(sum.by_severity.find(x=>x.severity==='critical')||{}).count?'var(--red)':'var(--green)'),
+    card(sum.by_rule.length,'涉及规则数'),
+  ));
+  frag.append(violationTable(S.violations));
+  return frag;
+}
+
+function violationTable(data){
+  const wrap = el('div',{class:'panel'});
+  if(!data) { return el('div',{class:'empty'},'加载中…'); }
+  const rows = data.violations;
+  if(!rows.length) return el('div',{}, el('div',{class:'empty'},'满足条件的违约记录为空'));
+  wrap.append(el('table',{},
+    el('thead',{},el('tr',{},['时间','契约','规则','列','严重','违约行主键','明细'].map(h=>el('th',{},h)) )),
+    el('tbody',{}, rows.map(v=>el('tr',{},
+      el('td',{},t(v.observed_at)),
+      el('td',{class:'mono'},v.contract_id+' v'+v.version),
+      el('td',{class:'mono'},v.rule_name),
+      el('td',{class:'mono'},v.column_name||'—'),
+      el('td',{html:pill(v.severity)}),
+      el('td',{class:'mono',style:'cursor:pointer;color:var(--accent)',onclick:()=>openRow(v)}, JSON.stringify(v.row_pk||{})),
+      el('td',{style:'font-size:12px'},v.detail))))));
+  wrap.append(el('div',{class:'switch',style:'margin-top:10px'},`显示 ${rows.length} 条（点击主键可下钻到具体行）`));
+  return wrap;
+}
+async function refreshViolations(){
+  const f=S.filters;
+  const params = new URLSearchParams({limit:'100'});
+  if(f.severity) params.set('severity',f.severity);
+  if(f.run) params.set('run_id',f.run);
+  if(f.contract) params.set('contract_id',f.contract);
+  if(f.rule) params.set('rule_name',f.rule);
+  try {
+    S.violations = await api('/api/violations?'+params);
+    if(f.upstream) S.violations.violations = S.violations.violations.filter(v=>v.contract_id.startsWith(f.upstream+'.'));
+    render();
+  }
+  catch(e){ toast(e.message,true); }
+}
+function openRow(v){
+  openModal(`<div style="display:flex;justify-content:space-between"><h2>违约下钻</h2><button class="btn close-modal">关闭</button></div>
+    <div class="kv" style="margin:12px 0">
+      <div class="k">契约</div><div class="mono">${esc(v.contract_id)} v${v.version}</div>
+      <div class="k">规则</div><div class="mono">${esc(v.rule_name)} (${esc(v.rule_kind)})</div>
+      <div class="k">列</div><div class="mono">${esc(v.column_name||'—')}</div>
+      <div class="k">严重度</div><div>${pill(v.severity)}</div>
+      <div class="k">观测时间</div><div>${t(v.observed_at)}</div>
+      <div class="k">运行</div><div class="mono">${esc(v.run_id)}</div>
+      <div class="k">明细</div><div>${esc(v.detail)}</div>
+      <div class="k">行主键</div><div class="mono">${esc(JSON.stringify(v.row_pk))}</div>
+    </div>
+    <h3>该行完整快照</h3><div class="detail mono">${esc(JSON.stringify(v.row_data,null,2))}</div>`);
+}
+
+/* ---------------- alerts ---------------- */
+function renderAlerts(){
+  const frag=document.createDocumentFragment();
+  frag.append(el('div',{class:'toolbar'}, el('h2',{style:'margin:0'},'告警'),
+    el('button',{class:'btn',onclick:()=>{S.alertShowSuppressed=!S.alertShowSuppressed;refreshAlerts();}},(S.alertShowSuppressed?'隐藏':'显示')+'被抑制的重复告警')));
+  frag.append(alertTable(S.alerts));
+  return frag;
+}
+function alertTable(rows){
+  if(!rows){ return el('div',{class:'empty'},'加载中…'); }
+  if(!rows.length) return el('div',{class:'empty'},'暂无告警');
+  const headRow = el('tr',{}, ['时间','级别','接收人','角色','标题','次数','状态'].map(h=>el('th',{},h)));
+  const bodyRows = rows.map(a => {
+    const sevCell = el('td',{}); sevCell.innerHTML = pill(a.severity);
+    const statusCell = el('td',{});
+    if (a.suppressed) statusCell.innerHTML = '<span class="pill draft">已抑制·未重复推送</span>';
+    else if (a.kind === 'resolution') statusCell.innerHTML = '<span class="pill active">已恢复</span>';
+    else if (a.kind === 'signoff_request' || a.kind === 'signoff_approved' || a.kind === 'signoff_rejected')
+      statusCell.innerHTML = '<span class="pill pending_signoff">流程通知</span>';
+    else if (a.resolved_at) statusCell.innerHTML = '<span class="pill active">已恢复</span>';
+    else statusCell.innerHTML = '<span class="pill high">待处理</span>';
+    return el('tr',{style:a.suppressed?'opacity:.55':''},
+      el('td',{}, t(a.created_at)),
+      sevCell,
+      el('td',{class:'mono'}, a.recipient),
+      el('td',{}, a.audience),
+      el('td',{}, a.title),
+      el('td',{}, String(a.occurrence_count)),
+      statusCell);
+  });
+  return el('div',{class:'panel'}, el('table',{}, el('thead',{}, headRow), el('tbody',{}, ...bodyRows)));
+}
+async function refreshAlerts(){
+  try { S.alerts = await api('/api/alerts?limit=200&include_suppressed='+(S.alertShowSuppressed!==false)); render(); }
+  catch(e){ toast(e.message,true); }
+}
+
+/* ---------------- submit ---------------- */
+function renderSubmit(){
+  const frag=document.createDocumentFragment();
+  frag.append(el('div',{class:'toolbar'},el('h2',{style:'margin:0'},'提交新版本'),
+    el('span',{class:'switch'},'提交时附带样例数据；样例与新契约不符会在提交阶段直接拦下')));
+  const box=el('div',{class:'panel'},
+    el('div',{class:'switch'},'契约 JSON/YAML（可粘贴 YAML）'),
+    el('textarea',{id:'sub-doc', placeholder:'contract_id: order_core.orders ...\ncolumns:\n  - name: order_id\n    type: string'},
+      S.submitDraft||''),
+    el('div',{class:'switch',style:'margin-top:12px'},'样例数据（JSON 行数组，可选）'),
+    el('textarea',{id:'sub-sample', placeholder:'[{"order_id":"ORD1","user_id":"U1", ...}]'},
+      S.submitSample||''),
+    el('div',{style:'margin-top:12px;display:flex;gap:8px'},
+      el('button',{class:'btn pri',onclick:doSubmit},'提交并判定'),
+      el('button',{class:'btn',onclick:()=>{ $('#sub-doc').value=''; $('#sub-sample').value='';}},'清空')));
+  frag.append(box);
+  if(S.submitResult) frag.append(el('div',{class:'panel'}, el('h2',{},'判定结果'),
+    el('div',{class:'detail mono'}, JSON.stringify(S.submitResult,null,2))));
+  return frag;
+}
+async function doSubmit(){
+  const raw = $('#sub-doc').value.trim();
+  const sampleTxt = $('#sub-sample').value.trim();
+  if(!raw) return toast('请填写契约',true);
+  let doc = null;
+  try { doc = JSON.parse(raw); } catch { doc = null; }
+  // YAML is accepted by the server; discover the contract id from the document itself
+  const idMatch = raw.match(/contract_id\s*:\s*(\S+)/) || raw.match(/"contract_id"\s*:\s*"(\S+)"/);
+  const id = doc?.contract_id || (idMatch ? idMatch[1].replace(/["']/g,'') : null);
+  if(!id) return toast('无法确定 contract_id（JSON 顶层或 YAML 中必须提供）',true);
+  let sample = null;
+  if(sampleTxt) { try { sample = JSON.parse(sampleTxt); } catch(e){ return toast('样例数据不是合法 JSON: '+e.message,true);} }
+  const body = doc ? {contract: doc, sample, submitted_by:'console'}
+                   : {contract_text: raw, sample, submitted_by:'console'};
+  try {
+    const res = await api(`/api/contracts/${encodeURIComponent(id)}/submit`, {method:'POST', body:JSON.stringify(body)});
+    S.submitResult = res;
+    toast(res.status==='pending_signoff' ? `判定为破坏性变更，已进入会签（${res.signoffs.length} 个消费者）` : `判定为 ${res.compatibility}，已生效`);
+    await loadAll(); render();
+  } catch(e){
+    S.submitResult = {error: String(e.message)};
+    toast('提交被拦下: '+e.message,true); render();
+  }
+}
+
+/* ---------------- boot ---------------- */
+(async function boot(){
+  S.alertShowSuppressed = true;
+  try { await loadAll(); } catch(e){ $('#root').append(el('div',{class:'empty'},'后端未就绪: '+e.message)); }
+})();
+</script>
+</body>
+</html>
